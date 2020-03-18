@@ -14,6 +14,11 @@ class TestController {
     println "=${g.message(code: 'date.field.format')}="
     render "${params} <br/><br/> - ${command.errors?.collect { error -> error as String }?.join(', ')}"
   }
+
+  def testDateFormat() {
+    java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime())
+    render "${g.formatDate(date: date, format: 'yyyy/MM/dd')}"
+  }
 }
 
 class DateCommand {
